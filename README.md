@@ -4,4 +4,4 @@
 
 _Aashna Sharma. Niki Galagedara._
 
-![alt text](./plant.png)
+![alt text](./plant1.png)
