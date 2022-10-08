@@ -6,7 +6,7 @@ import time
 import os
 
 """
-Kalman Filter for Accelertometer noise reduction
+Kalman Filter for sensor noise reduction
 Algorithm
 1. Inialize variables and constants 
     - Choose process variance constant (Q), and measurement constant (R) using raw data
@@ -67,8 +67,8 @@ class KalmanFilter():
         plt.legend(loc="upper right")
 
         plt.xlabel('UNIX Time')
-        plt.ylabel('Acceleration')
-        plt.title('Raw acceleration data comparison with Kalman filtered output')
+        plt.ylabel('Moisutre')
+        plt.title('Raw moisture data comparison with Kalman filtered output')
         plt.grid(True)
 
         arr = np.dstack((self.raw_data_array, self.kalman_filtered_array))
@@ -80,11 +80,11 @@ class KalmanFilter():
         output_name = 'gauss' + timestr + '.csv'
         filename = os.path.join(dirname, 'output/' + output_name)
 
-        with open(filename, "w+", newline='') as file:
-            csvWriter = csv.writer(file)
-            csvWriter.writerow(['Raw noise', 'Kalman filtered output'])
-            for x in arr:
-                csvWriter.writerows(x)
+        # with open(filename, "w+", newline='') as file:
+        #     csvWriter = csv.writer(file)
+        #     csvWriter.writerow(['Raw noise', 'Kalman filtered output'])
+        #     for x in arr:
+        #         csvWriter.writerows(x)
 
 
 if __name__ == "__main__":
