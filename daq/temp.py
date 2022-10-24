@@ -22,13 +22,6 @@ class Temperature():
     def __init__(self):
         pass
 
-    def collect_data(self):
-        """
-        Reads and returns temperature values from sensor
-        GPIO pin:
-        """
-        pass
-
     def read_rom(self):
         name_file=device_folder+'/name'
         f = open(name_file,'r')
@@ -41,6 +34,10 @@ class Temperature():
         return lines
 
     def read_temp(self):
+        """
+        Reads and returns temperature values from sensor
+        GPIO pin:
+        """
         lines = self.read_temp_raw()
         # Analyze if the last 3 characters are 'YES'.
         while lines[0].strip()[-3:] != 'YES':

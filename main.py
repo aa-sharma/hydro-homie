@@ -1,4 +1,6 @@
 import time
+import RPi.GPIO as GPIO
+
 from daq.moisture import Moisture
 from daq.temp import Temperature
 from daq.ldr import LDR
@@ -15,9 +17,19 @@ error_margin = 0.5
 
 
 def turnOnPump():
+    """
+    Method to turn on pump
+    Args: None
+    Returns: None
+    """
     GPIO.output(RELAY_PIN, GPIO.HIGH)
 
 def turnOffPump():
+    """
+    Method to turn off pump
+    Args: None
+    Returns: None
+    """
     GPIO.output(RELAY_PIN, GPIO.LOW)
 
 if __name__ == '__main__':
@@ -29,7 +41,7 @@ if __name__ == '__main__':
         current_light = LDR.collect_data()
 
         # Filtering
-        # current_temp = KalmanFilter.kalman(current_temp)
+        current_temp = KalmanFilter.kalman(current_temp)
 
         # actuate pump based on Temperature readings
         if (int(current_temp) + error_margin) < ideal_temp:
